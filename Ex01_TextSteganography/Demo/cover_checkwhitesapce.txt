@@ -1,0 +1,91 @@
+Không chèn do không phải là đoạn văn
+Không chèn do không phải là đoạn văn
+n = 10; m =  4                            v => 4 bit =>  4+;  6- => Xong
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n = 10; m =  0                            x
+n =  9; m =  9                            o
+n =  7; m =  4                            v => 3 bit =>  4+;  3- => Chưa xong OK
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n = 12; m =  1                            v => 1 bit =>  1+; 11- => Xong
+n =  8; m =  2                            v => 2 bit =>  2+;  6- => Xong
+n = 11; m =  0                            x
+n = 10; m =  2                            v => 2 bit =>  2+;  8- => Xong
+n = 12; m =  3                            v => 3 bit =>  3+;  9- => Xong
+n = 10; m =  5                            v => 5 bit =>  5+;  5- => Xong
+n =  9; m =  2                            v => 2 bit =>  2+;  7- => Xong
+n =  6; m =  7                            o
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n =  9; m =  4                            v => 4 bit =>  4+;  5- => Xong
+n = 10; m =  4                            v => 4 bit =>  4+;  6- => Xong
+n =  9; m =  1                            v => 1 bit =>  1+;  8- => Xong
+n =  9; m =  8                            v => 1 bit =>  8+;  1- => Chưa xong OK
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n = 10; m =  2                            v => 2 bit =>  2+;  8- => Xong
+n =  8; m =  4                            v => 4 bit =>  4+;  4- => Xong
+n = 12; m =  0                            x
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n =  7; m =  1                            v => 1 bit =>  1+;  6- => Xong
+n =  7; m =  0                            x
+n = 10; m =  1                            v => 1 bit =>  1+;  9- => Xong
+n = 10; m =  6                            v => 4 bit =>  6+;  4- => Chưa xong OK
+n =  8; m =  1                            v => 1 bit =>  1+;  7- => Xong
+n = 12; m =  0                            x
+n = 11; m =  3                            v => 3 bit =>  3+;  8- => Xong
+n = 11; m =  2                            v => 2 bit =>  2+;  9- => Xong
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n = 12; m =  1                            v => 1 bit =>  1+; 11- => Xong
+n =  9; m =  1                            v => 1 bit =>  1+;  8- => Xong
+n = 12; m =  1                            v => 1 bit =>  1+; 11- => Xong
+n =  9; m =  3                            v => 3 bit =>  3+;  6- => Xong
+n = 12; m =  1                            v => 1 bit =>  1+; 11- => Xong
+n = 11; m =  4                            v => 4 bit =>  4+;  7- => Xong
+n = 13; m =  2                            v => 2 bit =>  2+; 11- => Xong
+n = 10; m =  0                            x
+n =  9; m =  2                            v => 2 bit =>  2+;  7- => Xong
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+n =  8; m =  2                            v => 2 bit =>  2+;  6- => Xong
+n = 10; m =  0                            x
+n =  6; m =  5                            v => 1 bit =>  5+;  1- => Chưa xong  OK
+n =  7; m =  7                            o
+Không chèn do là dòng cuối
+Không chèn do không phải là đoạn văn
+Không chèn do không phải là đoạn văn
+
+Trong đó:
+    n là số khoảng trắng giữa các dòng
+    m là số khoảng trắng chèn thêm được, số khoảng trắng căn lề (Đếm số lượng các khoảng trắng cuối dòng)
+    v là nhúng được
+    x là không nhúng được do không cần căn lề hết khoảng trắng
+    o là không nhúng được những vẫn phải căn lề
+
+Các bước
+    Xác n và m
+    Xác định những dòng
+        Nhúng được
+            Khi 0 < m < n
+        Không nhúng được
+        Không nhúng được những vẫn phải căn lề
+    Xác định số bit cần Nhúng
+    -> Nhúng
+        Xác định số lượng khoảng trắng là + bằng m
+        Xác định số lượng khoảng trắng là - bằng n - m
+        Trong đó:
+            + là 2 khoảng trắng liên tiếp (1 khoảng trắng gồm 2 khoảng trắng)
+            - là 1 khoảng trắng (1 khoảng trắng gồm 1 khoảng trắng)
+    -> Xác định nhúng xong hay chưa xong
+        Nhúng xong khi số khoảng trắng nhúng đúng bằng m
+        Nhúng hết bit mã chưa đủ số khoảng trắng cần chèn thêm được thì vẫn phải chèn để đảm bảo căn lề
+        Số khoảng trắng căn lề nhiều hơn số khoảng trắng giữa các từ thì quay ngược lại chèn vào khoảng trắng đầu tiên
+        Không nhúng được khi:
+            m = 0           => Xét dòng tiếp theo
+            Hoặc m >= n     => Chèn thêm để căn lề
+    -> Kết thúc nhúng:
+        Để bên nhận biết kết thúc nhúng thì cần nhúng thêm dãy bit 100000... (Bắt đầu bằng bit 1 các bit còn lại là 0) vào cover text 
+        cho đến khi hết cover thì thôi

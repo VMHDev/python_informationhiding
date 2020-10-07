@@ -1,0 +1,77 @@
+Slide 2:
+	Thay cover image thành cover audio
+Slide 3-4: Hiểu về âm thanh
+	Dạng sóng liên tục analog (màu đỏ)
+	Điểm màu xanh (sample) là đường màu đỏ được rời rạc hóa (digital)
+		Khi lưu trữ thì phải chuyển analog sang digital
+		Chiều y theo cường độ sóng -> Rời rạc hóa theo chiều y thì có bit depth
+		Chiều x theo thời gian -> Rời rạc hóa theo chiều x thì có sample rate (Số sample/s)
+		
+	Sample có thể là mảng 1 chiều hoặc mảng 2 chiều (Mỗi chiều sẽ biểu diễn cho 1 sóng)
+	
+Slide 5:
+	mono: Âm thanh 1 sóng
+	stereo: Âm thanh 2 sóng có cùng chiều dài
+		Để nghe chân thực hơn thì cần hai sóng
+		Nếu hai loa thì mỗi loa sẽ thể hiện 1 sóng
+	lossy: mp3
+	lossless: .wav
+	
+Slide 6: Ẩn dữ liệu cho audio lossless
+	Sử dụng LSB
+		Ngược điểm: Không bền vững
+
+Slide 7: 
+	Sử dụng echo (tiếng vang)
+	Khi nói thì sóng âm dội lại
+	Tiếng vang phải có 1 thời gian để nghe được
+		Độ chêch lệch giữa âm ban đầu và tiếng vang nhỏ thì tai sẽ không nghe được
+			Để nghe được thì phải lớn hơn 0.1s
+		Có vài vật dụng có thể hấp thụ âm thanh nên sẽ không có âm phản lại
+		
+		Sóng echo có độ trễ so với sóng ban đầu
+		
+Slide 9:
+	bit 0: độ trễ delta 0
+	bit 1: độ trễ delta 1
+	-> Hai độ trễ phải tương đối nhỏ để người không nghe được
+	=> Chỉ nhúng được một bit
+	
+Slide 10:
+	Chia cover audio thành nhiều đoạn
+	
+Slide 11 - 12 - 13:
+	B1: Tạo hai cover audio
+	B2: Tạo 2 bộ trộn
+		mixer1 là mảng có chiều dài bằng chiều dài sóng
+			Biểu diễn bit nhúng 
+		mixer là nghịch đảo của mixer1
+	B3: Nhân mixer để loại bỏ của đoạn không cần thiết
+		Hình cuối thật sự là một sóng vẽ ra để cho dễ nhìn
+	
+Slide 14:
+	decay rate (option): (Từ 0 đến 1)
+		1: Giống hệt sóng âm gốc
+		<> 1: Giảm cường độ sóng âm gốc
+		decay rate nhỏ thì tính vô hình tốt
+		          quá nhỏ thì khó rút trích
+		Đơn giản thì cứ cho bằng 1 rồi điều chỉnh delta0, delta1
+		
+Slide 15: Rút trích
+	Cần biết số đoạn đã chia
+	Thống nhất chiều dài tối đa của chuỗi bit mật
+		Hoặc thống nhất kích thước đoạn âm thanh sẽ nhúng
+
+Slide 16: Rút trích mà không có delta0 hay delta1		
+	Xác định echo ở độ trễ nào?
+		=> Thống nhất delta0 nhỏ hơn delta1
+		Hoặc cứ rút trích xem cái nào có ý nghĩa thì lấy
+		
+Slide 17: Xác định độ trễ của echo
+	Sử dụng autocorrelation (tự tương quan)
+		(Giống hồi quy tuyến tính)
+		correlation: Tính tương quan giữa hai sóng - độ giống nhau giữa hai mảng => Cần truyển hai mảng
+		autocorrelation: Chỉ cần truyền vào 1 mảng và tính độ tương quan với các mảng chính nó nhưng có độ lệch
+		
+	
+	
